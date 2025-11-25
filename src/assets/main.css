@@ -1,0 +1,29 @@
+/* Importa tus tokens y estilos globales */
+@import './base.css';
+
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Fuente y color base */
+body {
+  font-family: var(--font-family-base);
+  background-color: var(--color-background);
+  color: var(--color-text);
+}
+
+/* Contenedor principal */
+#app {
+  width: 100%;
+  max-width: 380px; /* Tu diseño definido */
+  height: 100%;
+  min-height: 605px; /* Altura base de tu layout */
+  margin: 0 auto;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}

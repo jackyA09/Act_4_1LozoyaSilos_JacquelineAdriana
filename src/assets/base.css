@@ -1,0 +1,75 @@
+/* ==========================================================
+TOKENS DEL DESIGN SYSTEM
+(Colores, tipografía, espaciado, bordes, radios)
+========================================================== */
+:root {
+  /* Colores principales */
+  --gray-1: #d9d9d9;
+  --gray-2: #6c757d;
+  --blue: #0583f2;
+  --red: #dc3545;
+  --green: #05f215;
+  --light-blue: #7eb9ed;
+  --yellow: #fff600;
+  --white: #ffffff;
+  --black: #000000;
+  /* Tipografía */
+  --font-main: 'Roboto', sans-serif;
+  --font-title: 'Roboto', sans-serif;
+
+  /* Tamaños */
+  --text-main: 14px;
+  --text-sub: 12px;
+  --text-title: 14px;
+  --text-title-big: 20px;
+  --text-main-big: 20px;
+  --icon-big: 40px;
+  --icon-small: 30px;
+
+  /* Bordes y radios */
+  --radius-input: 15px;
+  --radius-ellipse: 100%;
+  --border-default: 1px solid var(--gray-2);
+  --border-focus: 1px solid var(--blue);
+  --border-error: 1px solid var(--red);
+
+  /* Espaciados */
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-24: 24px;
+
+  /* Fondo y texto global */
+  --color-background: #ffffff;
+  --color-text: #000000;
+}
+
+/* ==========================================================
+//   RESET GENERAL
+========================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+}
+
+/* ==========================================================
+//   ESTILO GLOBAL DEL BODY
+========================================================== */
+body {
+  min-height: 100vh;
+  background-color: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font-main);
+  font-size: var(--text-main);
+  line-height: 1.4;
+
+  /* Mejoras visuales */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
