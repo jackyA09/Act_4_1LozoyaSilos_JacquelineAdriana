@@ -8,9 +8,10 @@ import { RiHome2Fill, HiSolidEmojiHappy, LaLessThanSolid, FaCalendarAlt } from '
 addIcons(RiHome2Fill, HiSolidEmojiHappy, LaLessThanSolid, FaCalendarAlt)
 
 import router from './router'
-import TestApp from './TestApp.vue'
+//import TestApp from './TestApp.vue'
+import App from './App.vue'
 
-const app = createApp(TestApp)
+const app = createApp(App)
 
 app.component('v-icon', OhVueIcon)
 app.use(router)
