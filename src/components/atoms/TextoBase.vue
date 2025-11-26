@@ -1,3 +1,5 @@
+<!-- Texto que puede alternar entre sus variantes y propiedades segun su uso
+ dentro del diseño como encabezados, notas, etc-->
 <template>
   <component :is="tag" :class="['texto-base', `texto--${variant}`]" :style="inlineStyle">
     <slot />

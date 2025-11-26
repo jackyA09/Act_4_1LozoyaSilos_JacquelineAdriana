@@ -1,3 +1,5 @@
+<!--Atomo que asemeja el Perfil del usuario, aparenta una Foto solamente segun el
+diseño de mis compañeros-->
 <template>
   <div class="avatar-base" :style="avatarStyle">
     <template v-if="hasImage">
@@ -16,8 +18,8 @@ export default {
   name: 'AvatarBase',
   props: {
     imagen: { type: String, default: null },
-    size: { type: String, default: '38px' }, // default circle size
-    borderColor: { type: String, default: 'gray2' }, // token name
+    size: { type: String, default: '38px' },
+    borderColor: { type: String, default: 'gray2' },
   },
   computed: {
     hasImage() {

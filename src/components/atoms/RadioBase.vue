@@ -1,3 +1,6 @@
+<!-- Es la base par al asimulacion de los radiobutton permite
+ seleccionar y deseleccionar
+-->
 <template>
   <div
     class="radio-base"

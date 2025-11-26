@@ -1,42 +1,75 @@
 <template>
-  <div class="contenedor">
-    <!-- Texto a la izquierda -->
-    <TextoBase color="gray-2" variant="detalle">{{ titulo }}</TextoBase>
+  <div class="calificacion-contenedor">
+    <TextoBase color="gray-2" variant="cuerpo" class="titulo">
+      {{ titulo }}
+    </TextoBase>
 
-    <!-- Estrellas a la derecha -->
-    <div class="estrellas">
-      <Star v-for="n in 5" :key="n" :state="n <= estrellasLlenas ? 'filled' : 'empty'" />
+    <div
+      class="estrellas"
+      @mouseleave="hoverIndex = null"
+      role="radiogroup"
+      aria-label="Calificación"
+    >
+      <EstrellaBase
+        v-for="n in max"
+        :key="n"
+        :state="n <= displayCount ? 'filled' : 'empty'"
+        class="estrella"
+        @mouseover="onHover(n)"
+        @click="onSelect(n)"
+      />
     </div>
   </div>
 </template>
 
 <script>
-import Star from '../atoms/EstrellaBase.vue'
-import TextoBase from '../atoms/TextoBase.vue'
+import EstrellaBase from '@/components/atoms/EstrellaBase.vue'
+import TextoBase from '@/components/atoms/TextoBase.vue'
 
 export default {
   name: 'CalificacionEstrellas',
-
-  components: { Star, TextoBase },
+  components: { EstrellaBase, TextoBase },
 
   props: {
-    titulo: { type: String, default: 'Califica' },
+    modelValue: { type: Number, default: 0 },
+    max: { type: Number, default: 5 },
+    titulo: { type: String, default: 'Calificar' },
+  },
 
-    // variantes: Star0, Star1, Star2, Star3, Star4, Star5
-    variant: { type: String, default: 'Star0' },
+  emits: ['update:modelValue'],
+
+  data() {
+    return {
+      hoverIndex: null,
+    }
   },
 
   computed: {
-    estrellasLlenas() {
-      const num = Number(this.variant.replace('Star', ''))
-      return isNaN(num) ? 0 : Math.min(5, Math.max(0, num))
+    displayCount() {
+      return this.hoverIndex !== null ? this.hoverIndex : Number(this.modelValue || 0)
+    },
+  },
+
+  methods: {
+    // Al pasar el ratón, actualiza el índice (efecto hover)
+    onHover(n) {
+      this.hoverIndex = n
+    },
+
+    // Al hacer click, actualiza el valor y emite el cambio (selección permanente)
+    onSelect(n) {
+      // Si el usuario hace clic en la estrella ya seleccionada, la desactiva (toggle)
+      const newValue = this.modelValue === n ? 0 : n
+      this.$emit('update:modelValue', newValue)
+      this.hoverIndex = null // Quita el estado hover
     },
   },
 }
 </script>
 
 <style scoped>
-.contenedor {
+/* Tu CSS se ve bien, asegura que haya un gap entre el texto y las estrellas */
+.calificacion-contenedor {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -44,6 +77,17 @@ export default {
 
 .estrellas {
   display: flex;
-  gap: 4px;
+  gap: 6px;
+}
+
+.estrella {
+  cursor: pointer;
+  transition:
+    transform 0.12s ease,
+    opacity 0.12s ease;
+}
+
+.estrella:hover {
+  transform: scale(1.12);
 }
 </style>

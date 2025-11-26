@@ -1,3 +1,5 @@
+<!--usado para representar distintos circulos como
+iconos, radiobutton, etc, segun el diseño-->
 <template>
   <div class="elipse" :style="elipseStyle">
     <slot />
@@ -10,8 +12,8 @@ export default {
   name: 'Elipse',
   props: {
     variant: { type: String, default: 'large' }, // small | medium | large
-    size: { type: String, default: null }, // si quieres override: "30px"
-    color: { type: String, default: 'gray-2' }, // token name, e.g. 'blue', 'gray-2'
+    size: { type: String, default: null },
+    color: { type: String, default: 'gray-2' }, // token 'blue', 'gray-2', etc
   },
   computed: {
     computedSize() {

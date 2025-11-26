@@ -10,7 +10,13 @@
       <Elipse :color="cssColor(colorEli)" variant="medium" />
 
       <!-- Barra interactiva -->
-      <div class="barra-wrapper" @mousedown="startDrag" @touchstart="startDrag">
+      <div
+        class="barra-wrapper"
+        @mousedown="startDrag"
+        @touchstart="startDrag"
+        @click="onBarClick"
+        ref="barra"
+      >
         <!-- Barra completa -->
         <div
           class="barra-completa"
@@ -26,7 +32,7 @@
           :style="{
             width: value + '%',
             background: cssColor(colorBase),
-            transition: smooth ? 'width 0.25s ease' : 'none',
+            transition: smooth ? 'width 0.20s ease' : 'none',
           }"
         ></div>
 
@@ -37,7 +43,7 @@
           :color="cssColor(colorSlider)"
           :style="{
             left: `calc(${value}% - 20px)`,
-            transition: smooth ? 'left 0.25s ease' : 'none',
+            transition: dragging ? 'none' : smooth ? 'left 0.20s ease' : 'none',
           }"
         />
       </div>
@@ -57,15 +63,14 @@ export default {
 
   props: {
     etiqueta: { type: String, default: 'Nivel de satisfacción' },
-    value: { type: Number, default: 50 }, // 0–100
+    value: { type: Number, default: 50 },
 
-    /* 🎨 colores configurables */
+    /* 🎨 colores */
     colorBase: { type: String, default: 'blue' },
     colorFondo: { type: String, default: 'white' },
     colorEli: { type: String, default: 'gray-2' },
     colorSlider: { type: String, default: 'blue' },
 
-    /* Animación suave */
     smooth: { type: Boolean, default: true },
   },
 
@@ -79,8 +84,7 @@ export default {
 
   methods: {
     cssColor(token) {
-      if (!token) return 'transparent'
-      return token.startsWith('var(') ? token : `var(--${token})`
+      return token?.startsWith('var(') ? token : `var(--${token})`
     },
 
     startDrag(e) {
@@ -104,11 +108,22 @@ export default {
     updatePosition(e) {
       if (!this.dragging) return
 
-      const bar = this.$el.querySelector('.barra-wrapper')
+      const bar = this.$refs.barra
       const rect = bar.getBoundingClientRect()
 
       const clientX = e.touches ? e.touches[0].clientX : e.clientX
       let porcentaje = ((clientX - rect.left) / rect.width) * 100
+
+      porcentaje = Math.max(0, Math.min(100, porcentaje))
+
+      this.$emit('update:value', Math.round(porcentaje))
+    },
+
+    onBarClick(e) {
+      if (this.dragging) return // evita conflicto con drag
+
+      const rect = this.$refs.barra.getBoundingClientRect()
+      let porcentaje = ((e.clientX - rect.left) / rect.width) * 100
 
       porcentaje = Math.max(0, Math.min(100, porcentaje))
 
@@ -152,11 +167,24 @@ export default {
   top: 0;
   height: 20px;
   border-radius: 20px;
+  pointer-events: none;
 }
 
 .slider {
   position: absolute;
   top: -5px;
   z-index: 2;
+  transition:
+    background 0.15s ease,
+    transform 0.15s ease;
+}
+
+.slider:hover {
+  transform: scale(1.08);
+  filter: brightness(1.1);
+}
+
+.slider:active {
+  transform: scale(0.95);
 }
 </style>

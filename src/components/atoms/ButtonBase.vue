@@ -1,3 +1,4 @@
+<!--Boton Basico con multipes variantes y propiedades-->
 <template>
   <button
     class="button-base"
@@ -41,11 +42,11 @@ export default {
 /* Ejemplos de variantes */
 .button--primario {
   background: var(--blue);
-  color: white;
+  color: var(--white);
 }
 
 .button--primario:hover {
-  background: var(--blue-dark);
+  background: var(--dark-blue);
 }
 
 .button--secundario {

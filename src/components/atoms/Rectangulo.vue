@@ -1,3 +1,4 @@
+<!-- Forma de rectangulo base con distintas propiedades -->
 <template>
   <div class="rectangulo" :style="rectStyle">
     <slot />
@@ -13,7 +14,7 @@ export default {
     height: { type: String, default: '100px' },
     color: { type: String, default: 'blue' }, // token name e.g. 'blue' -> var(--blue)
     radius: { type: String, default: 'var(--radius-rect-default)' },
-    bgImage: { type: String, default: null }, // optional: url
+    bgImage: { type: String, default: null },
   },
   computed: {
     rectStyle() {

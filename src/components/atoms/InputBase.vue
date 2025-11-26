@@ -1,3 +1,6 @@
+<!-- Entrada de texto basica con opcion de inlcuir icono y ser ReadOnly
+ igualmente contiene sus variantes y tienenla posibilidad de cambiar el texto
+ por el usuario-->
 <template>
   <div class="input-wrapper" :class="{ 'has-icon': showIcon }">
     <!-- Icono opcional -->

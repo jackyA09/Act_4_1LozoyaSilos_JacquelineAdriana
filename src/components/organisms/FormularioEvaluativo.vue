@@ -1,47 +1,53 @@
 <template>
   <div class="form-wrapper">
-    <!-- Botón Back -->
-    <Icono name="RiArrowLeftLine" variant="black" size="28" class="icon-back" @click="irAtras" />
+    <!-- Back icon (refresh por ahora) -->
 
-    <!-- Entrada de Evaluación -->
-    <EntradaFormulario encabezado="Evalua Observaciones" class="entrada-evaluacion" />
+    <!-- Encabezado del input -->
+    <EntradaFormulario
+      v-model="observaciones"
+      :mostrarEtiqueta="true"
+      etiqueta="Evalua Observaciones"
+      :variantInput="'gray1'"
+    />
 
-    <!-- Pregunta 1 -->
-    <TextoBase variant="parrafo" color="gray-3" class="pregunta"> ¿Qué te pareció? </TextoBase>
+    <!-- Pregunta -->
+    <TextoBase as="p" variant="cuerpo" color="gray-2"> ¿Qué te pareció? </TextoBase>
 
-    <!-- Estrellas -->
-    <CalificacionEstrellas variant="Star0" />
+    <!-- Estrellas interactivas -->
+    <CalificacionEstrellas v-model="calificacion" titulo="" />
 
-    <!-- Pregunta 2 -->
-    <TextoBase variant="subtitulo" class="pregunta"> ¿Te gustaría volver a realizarlo? </TextoBase>
+    <!-- Pregunta secundaria -->
+    <TextoBase as="h2" variant="titulo" color="gray-2">
+      ¿Te gustaría volver a realizarlo?
+    </TextoBase>
 
-    <!-- Opciones Sí / No -->
-    <div class="opciones">
-      <OpcionSeleccion texto="Sí" color="gray-2" />
-      <OpcionSeleccion texto="No" color="gray-2" />
+    <!-- Opciones sí/no (vertical alineadas a la izquierda con interlineado 4px) -->
+    <div class="opciones-vertical">
+      <OpcionSeleccion v-model="respuesta" :value="'si'" label="Sí" variant="gray-2" />
+      <OpcionSeleccion v-model="respuesta" :value="'no'" label="No" variant="gray-2" />
     </div>
 
-    <!-- Nivel -->
-    <NivelConIcono class="nivel" />
+    <!-- Nivel (slider) -->
+    <NivelConIcono v-model:value="nivel" />
 
-    <!-- Botón Aceptar -->
-    <ButtonBase class="boton-aceptar"> Aceptar </ButtonBase>
+    <!-- Botón aceptar -->
+    <div class="accion">
+      <ButtonBase width="120px" height="40px" @click="onSubmit"> Aceptar </ButtonBase>
+    </div>
   </div>
 </template>
 
 <script>
-import Icono from '../atoms/Icono.vue'
-import EntradaFormulario from '../molecules/EntradaFormulario.vue'
-import TextoBase from '../atoms/TextoBase.vue'
-import CalificacionEstrellas from '../molecules/CalificacionEstrellas.vue'
-import OpcionSeleccion from '../molecules/OpcionSeleccion.vue'
-import NivelConIcono from '../molecules/NivelConIcono.vue'
-import ButtonBase from '../atoms/ButtonBase.vue'
+import EntradaFormulario from '@/components/molecules/EntradaFormulario.vue'
+import TextoBase from '@/components/atoms/TextoBase.vue'
+import CalificacionEstrellas from '@/components/molecules/CalificacionEstrellas.vue'
+import OpcionSeleccion from '@/components/molecules/OpcionSeleccion.vue'
+import NivelConIcono from '@/components/molecules/NivelConIcono.vue'
+import ButtonBase from '@/components/atoms/ButtonBase.vue'
 
 export default {
   name: 'FormularioEvaluativo',
   components: {
-    Icono,
     EntradaFormulario,
     TextoBase,
     CalificacionEstrellas,
@@ -49,14 +55,38 @@ export default {
     NivelConIcono,
     ButtonBase,
   },
-
+  data() {
+    return {
+      observaciones: '',
+      calificacion: 0,
+      respuesta: null, // 'si' o 'no'
+      nivel: 50, // 0-100
+    }
+  },
   methods: {
     irAtras() {
-      // POR AHORA refresca la página
+      // por ahora refresca
       window.location.reload()
+      // en el futuro: this.$router.back() o this.$router.push('/ruta')
+    },
+    onSubmit() {
+      // aquí procesas el envío (o emites evento al padre)
+      const payload = {
+        observaciones: this.observaciones,
+        calificacion: this.calificacion,
+        respuesta: this.respuesta,
+        nivel: this.nivel,
+      }
+      console.log('Enviar payload:', payload)
 
-      // MÁS ADELANTE:
-      // this.$router.push("/otra-pagina")
+      // ejemplo: resetear campos
+      // this.observaciones = ''
+      // this.calificacion = 0
+      // this.respuesta = null
+      // this.nivel = 50
+
+      // podrías también emitir:
+      // this.$emit('submit', payload)
     },
   },
 }
@@ -66,30 +96,23 @@ export default {
 .form-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
+  align-items: stretch;
 }
 
-.icon-back {
-  cursor: pointer;
-  margin-bottom: 12px;
-}
-
-.pregunta {
-  text-align: left;
-}
-
-.opciones {
+/* opciones verticales alineadas a la izquierda con interlineado 4px */
+.opciones-vertical {
   display: flex;
   flex-direction: row;
-  gap: 12px;
-  align-items: center;
+  align-items: flex-start;
+  gap: 4px;
 }
 
-.nivel {
-  margin-top: 12px;
-}
-
-.boton-aceptar {
-  margin-top: 16px;
+/* botón centrado */
+.accion {
+  margin-top: 8px;
+  display: flex;
+  margin-left: 50px;
+  justify-content: left;
 }
 </style>

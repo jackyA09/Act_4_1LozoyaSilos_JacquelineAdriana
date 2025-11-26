@@ -1,3 +1,11 @@
+<!-- Iconos Que se usaran para el diseño, con distintas propiedades y Mapeo de nombres para
+ mayor simplicidad al momento de modificar alguna propiedad
+ Personalmente la parte de la implementacion de iconos fue la mas complicada y la que mas me tomo tiempo,
+ primero copiando los svg desde figma del diseño de mis compañeros y solo importarlos
+ pero no fue asi de simple, tuve problemas con la importacion con las rutas y vite al no encontrar
+ los iconos entraba en ciclo y me mostraba una pantalla en blanco, busque otra opcion
+ y encontre que era mejor opcion en mi caso de principiante usar iconos oficiales de vue,
+ estos los encontre en la pagina oh-vue-icons.js.org, y asi logre usar y dejar ese problema por la paz -->
 <template>
   <v-icon :name="mappedName" :scale="scaleValue" :style="iconStyle" class="icono" />
 </template>
@@ -13,7 +21,7 @@ export default {
   },
 
   computed: {
-    /** Mapea tus nombres a los nombres reales de oh-vue-icons */
+    /**Iconos de oh-vue-icons */
     nameMap() {
       return {
         home: 'ri-home-2-fill',
@@ -28,12 +36,10 @@ export default {
       return this.nameMap[this.name] || this.name
     },
 
-    /** oh-vue-icons usa scale, no width/height */
     scaleValue() {
       return Number(this.size) / 30 // 30px = scale 1, 60px = scale 2, etc
     },
 
-    /** Aplica tus tokens */
     iconStyle() {
       return {
         color: `var(--${this.variant})`,

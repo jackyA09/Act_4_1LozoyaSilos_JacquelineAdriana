@@ -1,3 +1,4 @@
+<!-- -->
 <template>
   <div class="base-pagina">
     <!-- Perfil arriba -->
@@ -46,7 +47,7 @@ export default {
 }
 
 .perfil-container {
-  padding: 12px;
+  padding: px;
   flex-shrink: 0;
 }
 
@@ -58,10 +59,10 @@ export default {
 
 .menu-container {
   flex-shrink: 2;
-  width: 100%;
+  width: 400px;
   margin-bottom: 20px;
-  margin-left: 50%;
-  align-items: normal;
+  margin-left: 60%;
+  align-items: center;
   align-self: center;
 }
 </style>
