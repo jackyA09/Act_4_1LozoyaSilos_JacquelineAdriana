@@ -1,6 +1,8 @@
+<!--Organismo del  formulario de evalucion, segun el diseño
+compuesto de entrada, opciones, calificacion con estrellas, nivel de satisfacion
+y un boton de aceptar-->
 <template>
   <div class="form-wrapper">
-    <!-- Back icon (refresh por ahora) -->
 
     <!-- Encabezado del input -->
     <EntradaFormulario
@@ -65,12 +67,10 @@ export default {
   },
   methods: {
     irAtras() {
-      // por ahora refresca
+      // por ahora refresca antes de agregar otra pagina
       window.location.reload()
-      // en el futuro: this.$router.back() o this.$router.push('/ruta')
     },
     onSubmit() {
-      // aquí procesas el envío (o emites evento al padre)
       const payload = {
         observaciones: this.observaciones,
         calificacion: this.calificacion,
@@ -78,15 +78,6 @@ export default {
         nivel: this.nivel,
       }
       console.log('Enviar payload:', payload)
-
-      // ejemplo: resetear campos
-      // this.observaciones = ''
-      // this.calificacion = 0
-      // this.respuesta = null
-      // this.nivel = 50
-
-      // podrías también emitir:
-      // this.$emit('submit', payload)
     },
   },
 }

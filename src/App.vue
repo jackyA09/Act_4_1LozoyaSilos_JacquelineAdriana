@@ -1,3 +1,4 @@
+<!-- App principal que ejecuta la/s pagina/s -->
 <template>
   <PaginaEvaluacion />
 </template>

@@ -1,3 +1,5 @@
+<!--La pagina que usa la Base par ala misma y ademas el Formulario de Evaluacion, incluye un icono que manda
+a la pagina anterior-->
 <template>
   <BasePagina>
     <FormularioEvaluativo />

@@ -1,4 +1,5 @@
-<!-- -->
+<!--es la base que usan casi todas las paginas, muestran el perfil y el menu de accesos directos
+ -->
 <template>
   <div class="base-pagina">
     <!-- Perfil arriba -->
