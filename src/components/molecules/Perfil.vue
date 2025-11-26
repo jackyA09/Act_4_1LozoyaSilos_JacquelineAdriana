@@ -1,4 +1,7 @@
-<template>
+<!--Diseño del perfil, repetitivo usado en casi cada pagina del diseño original
+es un rectangulo en azul con la supuesta forto de persil, entre las variantes permite indicar
+con texto si contiene o no imagen, por default sin imagen-->
+  <template>
   <div class="perfil-wrapper">
     <Rectangulo
       class="perfil-rect"

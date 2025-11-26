@@ -1,3 +1,5 @@
+<!--Incluye un menu inferior con accesos directos representados con iconos
+permite usar una cantidad variable de iconos permitiendo modificarlos y escogerlos-->
 <template>
   <Rectangulo :height="height" :radius="radius" :width="width" color="gray-1">
     <div class="accesos">

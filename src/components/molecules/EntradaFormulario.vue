@@ -1,3 +1,4 @@
+<!-- Usa Texto para encabezado e input para una entrada, se pueden modificar ambos-->
 <template>
   <div class="entrada">
     <!-- Encabezado opcional -->

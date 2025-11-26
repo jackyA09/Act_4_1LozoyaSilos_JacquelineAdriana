@@ -1,3 +1,4 @@
+<!--Boton con icono usado como variante, en el diseño no se usa-->
 <template>
   <ButtonBase :variant="variant" @click="$emit('click')">
     <div class="contenido">

@@ -1,3 +1,4 @@
+<!--Agrupacion de esteellas con interaccion, variantes y adapta las propiedades del atomo-->
 <template>
   <div class="calificacion-contenedor">
     <TextoBase color="gray-2" variant="cuerpo" class="titulo">
@@ -68,7 +69,6 @@ export default {
 </script>
 
 <style scoped>
-/* Tu CSS se ve bien, asegura que haya un gap entre el texto y las estrellas */
 .calificacion-contenedor {
   display: flex;
   align-items: center;

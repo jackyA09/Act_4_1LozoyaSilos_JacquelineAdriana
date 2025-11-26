@@ -1,3 +1,6 @@
+<!--una barra variable que representa un nivel de satisfaccion
+incluye un elipse que no supe bn su funcion, el nivel puede ser modificado en su llenado
+por el usuario cuando se mueve el elipse del medio, se actualiza y visualiza con animacion e interaccion-->
 <template>
   <div class="nivel-wrapper">
     <!-- Encabezado -->
@@ -65,7 +68,7 @@ export default {
     etiqueta: { type: String, default: 'Nivel de satisfacción' },
     value: { type: Number, default: 50 },
 
-    /* 🎨 colores */
+    /* colores */
     colorBase: { type: String, default: 'blue' },
     colorFondo: { type: String, default: 'white' },
     colorEli: { type: String, default: 'gray-2' },
@@ -120,7 +123,7 @@ export default {
     },
 
     onBarClick(e) {
-      if (this.dragging) return // evita conflicto con drag
+      if (this.dragging) return
 
       const rect = this.$refs.barra.getBoundingClientRect()
       let porcentaje = ((e.clientX - rect.left) / rect.width) * 100

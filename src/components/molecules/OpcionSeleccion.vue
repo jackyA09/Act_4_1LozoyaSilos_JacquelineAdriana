@@ -1,3 +1,5 @@
+<!--usa una cantidad de radio buttons en este caso dos, cada uno con su nota debajo del mismo
+permite selccionar y deseleccionar, actuan como excluyentes mutuos-->
 <template>
   <div
     class="opcion"
@@ -40,7 +42,7 @@ export default {
   },
   methods: {
     select() {
-      // cuando se hace click, emitimos el valor de esta opción
+      // cuando se hace click,emite el valor de esta opción
       this.$emit('update:modelValue', this.value)
     },
   },
@@ -57,12 +59,12 @@ export default {
   user-select: none;
 }
 
-/* variante cuando está seleccionado (puedes ajustar estilos) */
+/* variante cuando está seleccionado */
 .opcion--selected {
   transform: none;
 }
 
-/* si se necesita horizontal: */
+/*alineacion horizontal: */
 .opcion.horizontal {
   flex-direction: row;
   gap: 8px;
